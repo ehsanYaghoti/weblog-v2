@@ -3,14 +3,19 @@ Requirements define the functional and non-functional expectations that the syst
 
 ## Functional Requirements
 
+### General
+
+- Skeleton loading *
+
 ### Authentication
+
+- password genrator *
 
 #### Registration
 
-- Users can create an account.
 - Email must be unique.
 - Passwords must comply with the application's password policy.
-- User receives email verification.
+- Email or phone verification.
 
 #### Login
 
