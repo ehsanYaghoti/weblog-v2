@@ -20,17 +20,19 @@ export default function FormTemplate({ title, btnTitle, fields }: TFormProps) {
     formState: { errors },
   } = form;
 
-  const onSubmit: SubmitHandler<z.infer<typeof registerSchema>> = async (data) => {
-
-    const res = await new Promise(resolve => setTimeout(() => {
-        resolve("response")
-    }, 2000))
+  const onSubmit: SubmitHandler<z.infer<typeof registerSchema>> = async (
+    data,
+  ) => {
+    const res = await new Promise((resolve) =>
+      setTimeout(() => {
+        resolve("response");
+      }, 2000),
+    );
 
     console.log(res);
 
     console.log(data);
-
-  }
+  };
 
   return (
     <div className=" flex flex-col border border-black/50 bg-white items-center gap-8 w-105 min-h-96 rounded-lg p-8 font-sans! text-slate-700">
@@ -53,11 +55,15 @@ export default function FormTemplate({ title, btnTitle, fields }: TFormProps) {
           <button
             disabled={form.formState.isSubmitting ? true : false}
             type="submit"
-            className="px-4 py-3 h-12 rounded-lg self-center cursor-pointer w-full disabled:bg-gray-500 disabled:cursor-not-allowed shadow-xl focus:shadow-lg
-             bg-slate-900 text-white font-medium border flex items-center justify-center
-             border-black/10"
+            className="px-4 py-3 h-12 rounded-lg self-center cursor-pointer w-full disabled:bg-gray-500 disabled:cursor-not-allowed shadow-xl focus:shadow-lg bg-slate-900 text-white font-medium border flex items-center justify-center border-black/10"
           >
-            {form.formState.isSubmitting ? <i><LoaderCircle className="animate-spin" /></i> : btnTitle}
+            {form.formState.isSubmitting ? (
+              <i>
+                <LoaderCircle className="animate-spin" />
+              </i>
+            ) : (
+              btnTitle
+            )}
           </button>
           <span className="text-sm text-slate-600 self-center">
             Already have an account?{" "}
