@@ -2,6 +2,7 @@ import { FormTemplateConfig } from "@/types/forms.types";
 import { TforgotPassForm } from "@/validation/forgotPassSchema";
 import { TLoginForm } from "@/validation/loginSchema";
 import { TRegisterForm } from "@/validation/registerSchema";
+import { TResetPassForm } from "@/validation/resetPassSchema";
 
 export const registerFieldsData: FormTemplateConfig<TRegisterForm> = {
   page: "register",
@@ -30,5 +31,15 @@ export const forgotPassFieldsData: FormTemplateConfig<TforgotPassForm> = {
   btnTitle: "Vertificate",
   fields: [
     { index: 0, name: "email", type: "email", label: "Email" },
+  ],
+};
+
+export const resetPassFieldsData: FormTemplateConfig<TResetPassForm> = {
+  page: "reset-password",
+  title: "Reset Password",
+  btnTitle: "Reset",
+  fields: [
+    { index: 0, name: "password", type: "password", label: "Password" },
+    { index: 1, name: "confirmPassword", type: "password", label: "Confirm Password" },
   ],
 };
