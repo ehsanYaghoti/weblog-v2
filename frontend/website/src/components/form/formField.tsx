@@ -11,6 +11,7 @@ export default function FormField({
   name,
   label = `${name.toLowerCase()}`,
   type,
+  page
 }: TFieldProps) {
   const { control } = useFormContext();
   return (
@@ -19,7 +20,7 @@ export default function FormField({
       control={control}
       render={({field , fieldState}) => (
         <Field data-invalid={fieldState.invalid}>
-          <FormLabel text={label} name={name} />
+          <FormLabel page={page} text={label} name={name} />
           <FormInput name={name} field={field} type={type} fieldState={fieldState} />
           <FormError name={name} fieldState={fieldState} />
         </Field>

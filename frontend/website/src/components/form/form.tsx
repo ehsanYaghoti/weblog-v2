@@ -1,81 +1,67 @@
 "use client";
 
 import FormField from "@/components/form/formField";
-import { useForm, SubmitHandler, FormProvider } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
-import { registerSchema } from "@/validation/registerSchema";
-import { TFormProps } from "@/types/props.types";
+import {
+    FormProvider,
+    FieldValues,
+    useFormState,
+} from "react-hook-form";
 import Link from "next/link";
 import { LoaderCircle } from "lucide-react";
+import { FormTemplateProps } from "@/types/forms.types";
+import SubmitBtn from "./submitBtn";
 
-export default function FormTemplate({ title, btnTitle, fields }: TFormProps) {
-  const form = useForm<z.infer<typeof registerSchema>>({
-    resolver: zodResolver(registerSchema),
-    defaultValues: { username: "", email: "", password: "" },
-    mode: "all",
-  });
+console.log("FormTemplate render");
 
-  const {
-    formState: { errors },
-  } = form;
+export default function FormTemplate<T extends FieldValues>({
+    form,
+    page,
+    title,
+    btnTitle,
+    fields,
+    onSubmitHandler
+}: FormTemplateProps<T>) {
 
-  const onSubmit: SubmitHandler<z.infer<typeof registerSchema>> = async (
-    data,
-  ) => {
-    const res = await new Promise((resolve) =>
-      setTimeout(() => {
-        resolve("response");
-      }, 2000),
+    const { isSubmitting } = useFormState({
+        control: form.control
+    })
+
+    return (
+        <div className=" flex flex-col border border-black/50 bg-white items-center gap-8 w-105 min-h-64 rounded-lg p-8 font-sans! text-slate-700">
+            <h1 className=" font-semibold text-2xl w-full">{title}</h1>
+            <FormProvider<T> {...form}>
+                <form
+                    onSubmit={form.handleSubmit(onSubmitHandler)}
+                    noValidate
+                    className="flex bg-white flex-col items-start w-full  gap-6"
+                >
+                    {fields.map((field) => (
+                        <FormField
+                            page={page}
+                            key={field.index}
+                            name={field.name}
+                            type={field.type}
+                            label={field.label}
+                        />
+                    ))}
+
+                    <SubmitBtn btnTitle={btnTitle} loading={isSubmitting} />
+                    {
+                        (page === 'register' || page === "login") && <span className="text-sm text-slate-600 self-center">
+                            {page === "register"
+                                ? "Already have an account? "
+                                : "Dose not have an account? "}
+                            <Link
+                                href={page === "register" ? "/auth/login" : "/auth/register"}
+                                className="text-slate-800 font-semibold underline"
+                            >
+                                {page === "register" ? "Login" : "Register"}
+                            </Link>{" "}
+                        </span>
+                    }
+
+                </form>
+            </FormProvider>
+        </div>
     );
-
-    console.log(res);
-
-    console.log(data);
-  };
-
-  return (
-    <div className=" flex flex-col border border-black/50 bg-white items-center gap-8 w-105 min-h-96 rounded-lg p-8 font-sans! text-slate-700">
-      <h1 className=" font-semibold text-2xl w-full">{title}</h1>
-      <FormProvider {...form}>
-        <form
-          onSubmit={form.handleSubmit(onSubmit)}
-          noValidate
-          className="flex bg-white flex-col items-start w-full  gap-6"
-        >
-          {fields.map((field) => (
-            <FormField
-              key={field.index}
-              name={field.name}
-              type={field.type}
-              label={field.label}
-            />
-          ))}
-
-          <button
-            disabled={form.formState.isSubmitting ? true : false}
-            type="submit"
-            className="px-4 py-3 h-12 rounded-lg self-center cursor-pointer w-full disabled:bg-gray-500 disabled:cursor-not-allowed shadow-xl focus:shadow-lg bg-slate-900 text-white font-medium border flex items-center justify-center border-black/10"
-          >
-            {form.formState.isSubmitting ? (
-              <i>
-                <LoaderCircle className="animate-spin" />
-              </i>
-            ) : (
-              btnTitle
-            )}
-          </button>
-          <span className="text-sm text-slate-600 self-center">
-            Already have an account?{" "}
-            <Link
-              href="/auth/login"
-              className="text-slate-800 font-semibold underline"
-            >
-              Login
-            </Link>{" "}
-          </span>
-        </form>
-      </FormProvider>
-    </div>
-  );
 }
