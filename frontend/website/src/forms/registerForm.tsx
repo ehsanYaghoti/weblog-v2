@@ -9,6 +9,10 @@ import * as z from "zod";
 import { TRegisterForm, registerSchema } from "@/validation/registerSchema";
 import { registerFieldsData } from "@/constants/forms";
 import FormTemplate from "@/components/form/form";
+import { setErrorMap } from "zod/v3";
+import { toast } from "sonner";
+import fetcher from "@/service/fetch";
+import { AuthResponse } from "@/types/responses.types";
 
 
 
@@ -22,17 +26,35 @@ export default function RegisterForm() {
     });
 
     const onSubmit: SubmitHandler<TRegisterForm> = async (
-        data,
+        body,
     ) => {
-        const res = await new Promise((resolve) =>
-            setTimeout(() => {
-                resolve("response");
-            }, 2000),
-        );
+        try {
 
-        console.log(res);
+            const data: AuthResponse = await fetcher({ method: "POST", url: process.env.NEXT_PUBLIC_REGISTER_URL!, body })
 
-        console.log(data);
+            if (!data.success) {
+
+                const errors = data.errors;
+
+                if (errors?.email) {
+                    form.setError('email', { type: "server", message: errors.email })
+                } else if (errors.password) {
+                    form.setError('password', { type: "server", message: errors.password })
+                } else if (errors.username) {
+                    form.setError('username', { type: "server", message: errors.username })
+                } else {
+                    toast.error("something went wrong", { position: "top-center" })
+                }
+
+            }
+
+            if (data.success) {
+                toast.success("form Submit was Success full", { position: "top-center" })
+            }
+        } catch (error) {
+            toast.error("something went wrong", { position: "top-center" })
+        }
+
     };
 
     return (
