@@ -1,4 +1,4 @@
-import { registerSchema } from "@/validation/registerSchema"
+import { forgotPassSchema } from "@/validation/forgotPassSchema";
 import { NextResponse } from "next/server"
 
 
@@ -6,7 +6,7 @@ export async function POST(request: Request) {
     const body: unknown = await request.json()
 
 
-    const result = registerSchema.safeParse(body)
+    const result = forgotPassSchema.safeParse(body)
     let zodErrors = {};
 
     if (!result.success) {
@@ -16,6 +16,6 @@ export async function POST(request: Request) {
     }
 
 
-    // return  NextResponse.json(!(Object.keys(zodErrors).length > 0) ? { success: false , errors: {email : "there is a logined account with this email"} } : { success: true })
+    // return  NextResponse.json(!(Object.keys(zodErrors).length > 0) ? { success: false , errors: {email : "there is not such user with this email"} } : { success: true })
     return NextResponse.json(Object.keys(zodErrors).length > 0 ? { success: false , errors: zodErrors } : { success: true })
 }
