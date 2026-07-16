@@ -16,5 +16,6 @@ export async function POST(request: Request) {
     }
 
 
+    // return  NextResponse.json(!(Object.keys(zodErrors).length > 0) ? { success: false , errors: {email : "there is a logined account with this email"} } : { success: true })
     return NextResponse.json(Object.keys(zodErrors).length > 0 ? { success: false , errors: zodErrors } : { success: true })
 }
