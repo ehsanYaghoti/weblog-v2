@@ -4,6 +4,7 @@ import {
   FieldValues,
 } from "react-hook-form";
 
+
 export type TInputProps = {
   type?: string;
   name: string;
@@ -12,6 +13,11 @@ export type TInputProps = {
   field: ControllerRenderProps<FieldValues, string>;
   fieldState: ControllerFieldState;
 };
+
+
+export interface TOtpInputProps extends TInputProps {
+    length : number
+}
 
 export type TLabelProps = {
   page: string;

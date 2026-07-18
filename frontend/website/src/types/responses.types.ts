@@ -9,6 +9,7 @@ export type ErrorResponse = {
     email?: string;
     password?: string;
     username?: string;
+    code ?: string;
   };
 };
 

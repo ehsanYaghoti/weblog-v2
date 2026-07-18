@@ -1,6 +1,7 @@
 import { FormTemplateConfig } from "@/types/forms.types";
 import { TforgotPassForm } from "@/validation/forgotPassSchema";
 import { TLoginForm } from "@/validation/loginSchema";
+import { TOtpForm } from "@/validation/otpSchema";
 import { TRegisterForm } from "@/validation/registerSchema";
 import { TResetPassForm } from "@/validation/resetPassSchema";
 
@@ -28,9 +29,18 @@ export const loginFieldsData: FormTemplateConfig<TLoginForm> = {
 export const forgotPassFieldsData: FormTemplateConfig<TforgotPassForm> = {
   page: "forgot-password",
   title: "Forgot Password",
-  btnTitle: "Vertificate",
+  btnTitle: "Send",
   fields: [
     { index: 0, name: "email", type: "email", label: "Email" },
+  ],
+};
+
+export const emailVertificationFieldsData: FormTemplateConfig<TOtpForm> = {
+  page: "email-vertification",
+  title: "Email Vertification",
+  btnTitle: "Verify",
+  fields: [
+    { index: 0, name: "code", label: "Code" },
   ],
 };
 
