@@ -41,7 +41,7 @@ export default function useForgotPass() {
             }
 
             toast.success("Submit was Success full", { position: "top-center" })
-            router.push("/auth/reset-password");
+            router.push(`/auth/email-vertification?email=${body.email}`);
         } catch (error) {
             toast.error("something went wrong", { position: "top-center" })
         }

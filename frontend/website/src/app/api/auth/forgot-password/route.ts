@@ -15,7 +15,18 @@ export async function POST(request: Request) {
         })
     }
 
+    // Generates OTP
+    // Stores it
+    // Sends email
+    // Creates a temporary verification token
+    // Returns:
+    // Set-Cookie:
+    // verification_token=eyJhbGci...
+    // HttpOnly
+    // Secure
+    // SameSite=Lax
+    // Max-Age=300
 
     // return  NextResponse.json(!(Object.keys(zodErrors).length > 0) ? { success: false , errors: {email : "there is not such user with this email"} } : { success: true })
-    return NextResponse.json(Object.keys(zodErrors).length > 0 ? { success: false , errors: zodErrors } : { success: true })
+    return NextResponse.json(Object.keys(zodErrors).length > 0 ? { success: false, errors: zodErrors } : { success: true, token: "123abc" })
 }

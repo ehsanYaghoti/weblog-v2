@@ -29,6 +29,7 @@ export const loginFieldsData: FormTemplateConfig<TLoginForm> = {
 export const forgotPassFieldsData: FormTemplateConfig<TforgotPassForm> = {
   page: "forgot-password",
   title: "Forgot Password",
+  description : "Enter your Email to send you a vertification code.",
   btnTitle: "Send",
   fields: [
     { index: 0, name: "email", type: "email", label: "Email" },

@@ -1,6 +1,7 @@
 export type SuccessResponse = {
   success: true;
   message?: string;
+  resetToken ?: string;
 };
 
 export type ErrorResponse = {

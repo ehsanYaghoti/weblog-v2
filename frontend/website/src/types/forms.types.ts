@@ -9,6 +9,7 @@ import {
 export type FormTemplateConfig<T extends FieldValues> = {
     page: string;
     title: string;
+    description ?: string;
     btnTitle: string;
     fields: {
         index: number;

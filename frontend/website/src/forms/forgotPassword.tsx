@@ -15,10 +15,7 @@ export default function ForgotPasswordForm () {
         <FormTemplate
             form={form}
             onSubmitHandler={onSubmit}
-            fields={forgotPassFieldsData.fields}
-            page={forgotPassFieldsData.page}
-            title={forgotPassFieldsData.title}
-            btnTitle={forgotPassFieldsData.btnTitle}
+            {...forgotPassFieldsData}
         />
     )
 }

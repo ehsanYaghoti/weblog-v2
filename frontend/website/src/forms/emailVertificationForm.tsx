@@ -7,9 +7,9 @@ import useEmailVertification from "@/hooks/useEmailVertification";
 
 
 
-export default function EmailVertificationForm () {
+export default function EmailVertificationForm ({email} : {email : string}) {
 
-    const {form , onSubmit} = useEmailVertification();
+    const {form , onSubmit} = useEmailVertification(email);
 
     return (
         <FormTemplate
@@ -18,6 +18,7 @@ export default function EmailVertificationForm () {
             fields={emailVertificationFieldsData.fields}
             page={emailVertificationFieldsData.page}
             title={emailVertificationFieldsData.title}
+            description={`we had sent a code to this email : ${email}`}
             btnTitle={emailVertificationFieldsData.btnTitle}
         />
     )
