@@ -14,8 +14,6 @@ import {
   CardTitle,
 } from "../ui/card";
 
-console.log("FormTemplate render");
-
 export default function FormTemplate<T extends FieldValues>({
   form,
   page,

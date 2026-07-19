@@ -8,9 +8,8 @@ export default async function ResetPassword({
   searchParams: Promise<{ resetToken?: string }>;
 }) {
   const { resetToken } = await searchParams;
-  console.log(resetToken);
 
-  if (!resetToken) {
+  if (!resetToken || resetToken === "undefined") {
     redirect("/auth/login");
   }
 

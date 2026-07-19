@@ -25,12 +25,12 @@
 
 ### Setup
 
-- [ ] Create Next.js project
-- [ ] Configure TypeScript
-- [ ] Configure Tailwind CSS
-- [ ] Configure Shadcn UI
-- [ ] Configure ESLint
-- [ ] Configure Prettier
+- [x] Create Next.js project
+- [x] Configure TypeScript
+- [x] Configure Tailwind CSS
+- [x] Configure Shadcn UI
+- [x] Configure ESLint
+- [x] Configure Prettier
 
 ### Layout
 
@@ -42,10 +42,10 @@
 
 ### Authentication
 
-- [ ] Login
-- [ ] Registration
-- [ ] Forgot Password
-- [ ] Email Verification
+- [x] Login
+- [x] Registration
+- [x] Forgot Password
+- [x] Email Verification
 
 ### Articles
 

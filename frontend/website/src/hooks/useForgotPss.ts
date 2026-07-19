@@ -34,14 +34,13 @@ export default function useForgotPass() {
             })
 
             if (!data.success) {
-
                 applyServerErrors(form, data.errors)
                 return;
 
             }
 
             toast.success("Submit was Success full", { position: "top-center" })
-            router.push(`/auth/email-vertification?email=${body.email}`);
+            router.push('/auth/email-vertification');
         } catch (error) {
             toast.error("something went wrong", { position: "top-center" })
         }

@@ -1,19 +1,26 @@
 import EmailVertificationForm from "@/forms/emailVertificationForm";
+import verifyEmailForgotToken from "@/helpers/verifyEmailForgotToken";
 import { emailSchema } from "@/validation/emailSchema";
+import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
-export default async function EmailVertification({
-  searchParams,
-}: {
-  searchParams: Promise<{ email?: string }>;
-}) {
-  const { email } = await searchParams;
-  console.log(email);
+export default async function EmailVertification() {
+  const cookieStore = await cookies();
 
-  const result = emailSchema.safeParse({email})
-  console.log(result);
+  const email = cookieStore.get("verification_email")?.value;
+  const forgot_token = cookieStore.get("verification_token")?.value;
 
-  if (!email || !result.success) {
+  const result = emailSchema.safeParse({ email });
+
+
+  if (!email || !result.success || !forgot_token) {
+    redirect("/auth/forgot-password");
+  }
+
+
+  const isValid = await verifyEmailForgotToken(email, forgot_token);
+
+  if (!isValid) {
     redirect("/auth/forgot-password");
   }
 

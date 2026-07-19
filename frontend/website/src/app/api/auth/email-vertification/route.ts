@@ -16,7 +16,7 @@ export async function POST(request: Request) {
     }
 
 
-    return  NextResponse.json(!(Object.keys(zodErrors).length > 0) ? { success: false , errors: {email : "the email is not validate!!!"} } : { success: true })
+    // return  NextResponse.json(!(Object.keys(zodErrors).length > 0) ? { success: false , errors: {email : "the email is not validate!!!"} } : { success: true })
     // return  NextResponse.json(!(Object.keys(zodErrors).length > 0) ? { success: false , errors: {code : "the code is not valid"} } : { success: true })
-    return NextResponse.json(Object.keys(zodErrors).length > 0 ? { success: false , errors: zodErrors } : { success: true })
+    return NextResponse.json(Object.keys(zodErrors).length > 0 ? { success: false , errors: zodErrors } : { success: true , resetToken : "abc123" })
 }

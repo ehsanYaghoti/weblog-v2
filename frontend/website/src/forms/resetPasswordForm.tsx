@@ -11,10 +11,7 @@ export default function ResetPasswordForm() {
     <FormTemplate
       form={form}
       onSubmitHandler={onSubmit}
-      fields={resetPassFieldsData.fields}
-      page={resetPassFieldsData.page}
-      title={resetPassFieldsData.title}
-      btnTitle={resetPassFieldsData.btnTitle}
+      {...resetPassFieldsData}
     />
   );
 }
