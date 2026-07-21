@@ -8,7 +8,8 @@ export const loginSchema = z.object({
     .regex(
       /^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*\-_+=]).+$/,
       "Password must contain At least one uppercase and lowercase letter, one number, and one symbol.",
-    )
+    ),
+    rememberme : z.boolean().optional()
 });
 
 

@@ -6,6 +6,7 @@ import FormLabel from "./formLabel";
 import { useFormContext } from "react-hook-form";
 import { Controller } from "react-hook-form";
 import FormInputOtp from "./formInputOtp";
+import { Checkbox } from "@/components/ui/checkbox";
 
 export default function FormField({
   name,
@@ -19,9 +20,16 @@ export default function FormField({
       name={name}
       control={control}
       render={({ field, fieldState }) => (
-        <Field data-invalid={fieldState.invalid}>
+        type === "checkbox" ?
+        <Field orientation="horizontal" data-invalid={fieldState.invalid}>
+          <Checkbox  id={name} checked={field.value} onCheckedChange={field.onChange} aria-invalid={fieldState.invalid} />
           <FormLabel page={page} text={label} name={name} />
-          {page === "email-vertification" ? (
+          {/* <FormError name={name} fieldState={fieldState} /> */}
+        </Field>
+        :
+        <Field data-invalid={fieldState.invalid}>
+          <FormLabel page={page} text={label} name={name}  />
+          {page === "email-verification" ? (
             <FormInputOtp
               length={6}
               name={name}

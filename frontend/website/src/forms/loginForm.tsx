@@ -11,10 +11,7 @@ export default function LoginForm() {
     <FormTemplate
       form={form}
       onSubmitHandler={onSubmit}
-      fields={loginFieldsData.fields}
-      page={loginFieldsData.page}
-      title={loginFieldsData.title}
-      btnTitle={loginFieldsData.btnTitle}
+      {...loginFieldsData}
     />
   );
 }
