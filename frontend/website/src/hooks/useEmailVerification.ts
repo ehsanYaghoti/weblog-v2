@@ -11,7 +11,7 @@ import { toast } from "sonner";
 
 
 
-export default function useEmailVertification(email: string) {
+export default function useEmailVerification(email: string) {
 
     const router = useRouter();
 
@@ -29,7 +29,7 @@ export default function useEmailVertification(email: string) {
 
             const data: AuthResponse = await fetcher({
                 method: "POST",
-                url: process.env.NEXT_PUBLIC_EMAIL_VERTIFICATION_URL!,
+                url: process.env.NEXT_PUBLIC_EMAIL_VERIFICATION_URL!,
                 body: {
                     ...body,
                     email

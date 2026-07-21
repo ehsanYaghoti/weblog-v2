@@ -40,7 +40,7 @@ export default function useForgotPass() {
             }
 
             toast.success("Submit was Success full", { position: "top-center" })
-            router.push('/auth/email-vertification');
+            router.push('/auth/email-verification');
         } catch (error) {
             toast.error("something went wrong", { position: "top-center" })
         }

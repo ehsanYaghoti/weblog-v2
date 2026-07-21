@@ -14,7 +14,7 @@ export default function FormLabel({
 
 
 
-  return page === "email-vertification" ? <EmailVertifyLabel name={name} labelStyle={labelStyle} text={text} /> : name === "password" && page === "login" ? (
+  return page === "email-verification" ? <EmailVertifyLabel name={name} labelStyle={labelStyle} text={text} /> : name === "password" && page === "login" ? (
     <div className="w-full flex  items-center justify-between">
       <FieldLabel htmlFor={name} className={`${labelStyle || ""} `}>
         {text}

@@ -1,10 +1,10 @@
-import EmailVertificationForm from "@/forms/emailVertificationForm";
+import EmailVerificationForm from "@/forms/emailVerificationForm";
 import verifyEmailForgotToken from "@/helpers/verifyEmailForgotToken";
 import { emailSchema } from "@/validation/emailSchema";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
-export default async function EmailVertification() {
+export default async function EmailVerification() {
   const cookieStore = await cookies();
 
   const email = cookieStore.get("verification_email")?.value;
@@ -24,5 +24,5 @@ export default async function EmailVertification() {
     redirect("/auth/forgot-password");
   }
 
-  return <EmailVertificationForm email={email} />;
+  return <EmailVerificationForm email={email} />;
 }
