@@ -6,8 +6,6 @@ Home
 ├── Register
 ├── Articles
 │   └── Article Details
-├── Podcasts
-│   └── Podcast Details
 ├── Authors
 │   └── Author Profile
 ├── Search
